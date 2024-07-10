@@ -1,0 +1,10 @@
+{
+  "firstName": "Rafael",
+  "lastName": "Sigwalt",
+  "professionalDescription":"A software developer, with Bachelor in Mechanical Engineering and a Software Development and Network Engineering colege diploma. With five years of professional experience, I have successfully delivered complex web applications using Java Spring Boot, Angular and SQL. My expertise includes full-stack development, REST APIs and cloud technologies.",
+  "personalDescription":"In my free time I use moutain biking and hiking as ways to clear the mind to solve complex problems, while keeping updated on the latest trends and technologies through continuous learning.",
+  "links":{
+    "linkedIn":"https://www.linkedin.com/in/rafaelsigwalt/",
+    "github":"https://github.com/rafsig"
+  }
+}

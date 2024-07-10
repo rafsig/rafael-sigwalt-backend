@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title":"Personal Website - front-end",
+    "shortDescription":"The website you are currently visiting that showcases my knowledge and experiences",
+    "description":"This website, based on React and Typescript, deployed using AWS amplify. It is meant to showcase my capabilities as a software developer. New features and capabilities will be added based on feedback and new knowledge, following an agile filosophy of constant development.",
+    "imageUrl":"/images/website-cover.png",
+    "git":"https://github.com/rafsig/rafael-sigwalt-site",
+    "skills":["React", "TypeScript", "HTML", "CSS", "Styled-Components"],
+    "nextSteps":[
+      "Add Redux to manage global state",
+      "Create backend services to support the front end",
+      "Add Education section",
+      "Add Certifications section"]
+  },
+  {
+    "id": 2,
+    "title":"Project management system",
+    "imageUrl":"/images/project-management-cover.png",
+    "git":"https://github.com/jatinrampal/WhiteBears-Capstone",
+    "shortDescription":"Presented as captsone project as part of my Software Development and Network Engineering program, it went through the entire SDLC.",
+    "description":"This project was the development of a system to help with the flow of information and documentation between different teams during the SDLC. It included document versioning and comparisons between versions of .doc and .docx files and a flow of these documents between the team members. It was evaluated as one of the best capstones presented during that semester.",
+    "skills":["C#", "ASP/.NET","HTML", "CSS", "Project Management", "SDLC", "SQL"]
+
+  },
+  {
+    "id": 3,
+    "title":"Cycle Touring Bike",
+    "shortDescription":"Presented as capstone project as part of my Mechanical Engineering program is the first contact with a full product development life cycle",
+    "description":"This project was the development of a cycle touring bike adapted to brazilian reality, and started with in depth review of the subject and requirements gathering with users. It ended with a functional prototype built to validate the solution proposed. As we progressed throught this project we face many obstacles such as difficulty to find enough users to provide requirements, time and resources contraint. Methodologies applied on this project to circunvent this project have been successfuly applied through my carreer to develop software with adaptations to the agile principles. The project was presented with a valuation of 9.5 out of 10",
+    "imageUrl":"/images/bike-cover.jpg",
+    "skills":["Project Management", "Product Development Life Cycle", "Planning"]
+  }
+]

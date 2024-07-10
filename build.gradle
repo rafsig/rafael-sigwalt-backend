@@ -1,0 +1,52 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.1'
+	id 'io.spring.dependency-management' version '1.1.5'
+	id 'jacoco'
+	id 'com.palantir.docker' version '0.36.0'
+}
+
+group = 'com.rafael-sigwalt'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.17.1'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test{
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+	dependsOn test
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree( dir: it, exclude: [
+					"com/rafael_sigwalt/personal_website/dtos/*",
+					"com/rafael_sigwalt/personal_website/controllers/*",
+					"com/rafael_sigwalt/personal_website/models/*"
+			])
+		}))
+	}
+
+}
+
+docker{
+	name "${project.name}"
+	files "build/libs/personal-website-0.0.1-SNAPSHOT.jar"
+}
