@@ -15,6 +15,18 @@
   },
   {
     "id": 2,
+    "title":"Personal Website - back-end",
+    "shortDescription":"Back-end developed to support my personal website",
+    "description":"This project, currently based on Java Spring Boot, provides the information presented on this website dynamically, allowing for the impelementaion of admin capabilities such as inserting new information without redeploying the web application.",
+    "imageUrl":"/images/personal-website-backend-cover.png",
+    "skills":["Java Spring Boot", "REST API", "AWS ECS", "AWS ALB"],
+    "nextSteps":[
+      "Add a database",
+      "Add PUT, DELETE and UPDATE requests"
+    ]
+  },
+  {
+    "id": 3,
     "title":"Project management system",
     "imageUrl":"/images/project-management-cover.png",
     "git":"https://github.com/jatinrampal/WhiteBears-Capstone",
@@ -24,7 +36,7 @@
 
   },
   {
-    "id": 3,
+    "id": 4,
     "title":"Cycle Touring Bike",
     "shortDescription":"Presented as capstone project as part of my Mechanical Engineering program is the first contact with a full product development life cycle",
     "description":"This project was the development of a cycle touring bike adapted to brazilian reality, and started with in depth review of the subject and requirements gathering with users. It ended with a functional prototype built to validate the solution proposed. As we progressed throught this project we face many obstacles such as difficulty to find enough users to provide requirements, time and resources contraint. Methodologies applied on this project to circunvent this project have been successfuly applied through my carreer to develop software with adaptations to the agile principles. The project was presented with a valuation of 9.5 out of 10",
