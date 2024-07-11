@@ -19,6 +19,7 @@
     "shortDescription":"Back-end developed to support my personal website",
     "description":"This project, currently based on Java Spring Boot, provides the information presented on this website dynamically, allowing for the impelementaion of admin capabilities such as inserting new information without redeploying the web application.",
     "imageUrl":"/images/personal-website-backend-cover.png",
+    "git": "https://github.com/rafsig/rafael-sigwalt-backend",
     "skills":["Java Spring Boot", "REST API", "AWS ECS", "AWS ALB"],
     "nextSteps":[
       "Add a database",
