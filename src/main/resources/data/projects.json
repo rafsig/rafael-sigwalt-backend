@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title":"Personal Website - front-end",
+    "title":"Personal Website: front-end",
     "shortDescription":"The website you are currently visiting that showcases my knowledge and experiences",
     "description":"This website, based on React and Typescript, deployed using AWS amplify. It is meant to showcase my capabilities as a software developer. New features and capabilities will be added based on feedback and new knowledge, following an agile filosophy of constant development.",
     "imageUrl":"/images/website-cover.png",
@@ -9,13 +9,14 @@
     "skills":["React", "TypeScript", "HTML", "CSS", "Styled-Components"],
     "nextSteps":[
       "Add Redux to manage global state",
-      "Create backend services to support the front end",
-      "Add Education section",
-      "Add Certifications section"]
+      "Remove education page data to back-end",
+      "Refactor Card code to be reusable between Certificates and Projects",
+      "Add modal with detailed description to Certificates"
+    ]
   },
   {
     "id": 2,
-    "title":"Personal Website - back-end",
+    "title":"Personal Website: back-end",
     "shortDescription":"Back-end developed to support my personal website",
     "description":"This project, currently based on Java Spring Boot, provides the information presented on this website dynamically, allowing for the impelementaion of admin capabilities such as inserting new information without redeploying the web application.",
     "imageUrl":"/images/personal-website-backend-cover.png",
@@ -45,3 +46,4 @@
     "skills":["Project Management", "Product Development Life Cycle", "Planning"]
   }
 ]
+
