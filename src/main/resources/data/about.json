@@ -1,8 +1,8 @@
 {
   "firstName": "Rafael",
   "lastName": "Sigwalt",
-  "professionalDescription":"A passionate software developer with a Software Development and Network Engineering diploma. I had my first contact with coding, in c++, during my Mechanical Engineering Bachelor. During my internships, I further developed the love for programming trying to automate my daily tasks using VBA. That's when I decided I wanted to go into software development full time and professionalize on the area. Now with 5 years of experience on IT, my main skills are on Java, Spring Boot, SQL and React. But I am always looking for something new to learn.",
-  "personalDescription":"On my free time I like to exercise my natural curiosity, not only studying IT related subjects, but also keepin updated with what is happening on astronomy, physics and math areas. And at last, to clear my mind I like to practice sports such as hiking and mountain biking.",
+  "professionalDescription":"A passionate software developer with a Software Development and Network Engineering diploma. I had my first contact with coding, in C++, during my Mechanical Engineering Bachelor. During my internships, I further developed the love for programming trying to automate my daily tasks using VBA. That's when I decided I wanted to go into software development full time and professionalize on the area. Now with 5 years of experience on IT, my main skills are on Java, Spring Boot, SQL and React. But I am always looking for something new to learn.",
+  "personalDescription":"On my free time I like to exercise my natural curiosity, not only studying IT related subjects, but also keeping updated with what is happening on astronomy, physics and math areas. And at last, to clear my mind I like to practice sports such as hiking and mountain biking.",
   "links":{
     "linkedIn":"https://www.linkedin.com/in/rafaelsigwalt/",
     "github":"https://github.com/rafsig"
