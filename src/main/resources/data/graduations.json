@@ -1,0 +1,16 @@
+[
+    {
+        "id":1,
+        "degree":"Diploma",
+        "programName":"Software Development and Network Engineering",
+        "dateConcluded":"2018-12-31",
+        "institution":"Sheridan College"
+    },
+    {
+        "id":2,
+        "degree":"Bachelor",
+        "programName":"Mechanical Engineering",
+        "dateConcluded":"2015-11-30",
+        "institution":"Federal Technological University of Parana"
+    }
+]
