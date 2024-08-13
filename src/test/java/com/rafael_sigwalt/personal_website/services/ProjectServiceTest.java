@@ -1,21 +1,18 @@
 package com.rafael_sigwalt.personal_website.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rafael_sigwalt.personal_website.exceptions.DataFileNotAccessibleException;
+import com.rafael_sigwalt.personal_website.exceptions.ResourceNotFoundException;
 import com.rafael_sigwalt.personal_website.models.Project;
+import com.rafael_sigwalt.personal_website.repositories.ProjectsRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.core.io.Resource;
-
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,25 +23,13 @@ public class ProjectServiceTest {
     private ProjectService projectService;
 
     @Mock
-    private ObjectMapper objectMapper;
-
-    @Mock
-    Resource resource;
+    private ProjectsRepository projectsRepository;
 
     AutoCloseable autoCloseable;
-
-    InputStream inputStream;
 
     @BeforeEach
     public void setup() {
         autoCloseable = MockitoAnnotations.openMocks(this);
-        projectService.setResourceFile(resource);
-        inputStream = new InputStream() {
-            @Override
-            public int read() throws IOException {
-                return 0;
-            }
-        };
     }
 
     @AfterEach
@@ -56,9 +41,7 @@ public class ProjectServiceTest {
     public void getProjectListReturnsProjectListInformation() throws IOException {
         List<Project> projectList = Arrays.asList(new Project(), new Project());
 
-        when(resource.getInputStream()).thenReturn(inputStream);
-        when(objectMapper.readValue(any(InputStream.class),
-                eq(projectService.getTypeReference())))
+        when(projectsRepository.findAll())
                 .thenReturn(projectList);
 
         List<Project> result = projectService.getProjectList();
@@ -67,26 +50,12 @@ public class ProjectServiceTest {
     }
 
     @Test
-    public void getProjectListThrowsDataFileNotAccessibleException() throws IOException {
-        when(resource.getInputStream()).thenThrow(new IOException());
-
-        assertThrows(DataFileNotAccessibleException.class,
-                () -> projectService.getProjectList());
-    }
-
-    @Test
     public void getProjectByIdReturnsProjectFilteredById() throws IOException{
-        Project project1 = new Project();
-        project1.setId(1);
-        Project project2 = new Project();
-        project2.setId(2);
+        Project project = new Project();
+        project.setId(1);
 
-        List<Project> projectList = Arrays.asList(project1, project2);
-
-        when(resource.getInputStream()).thenReturn(inputStream);
-        when(objectMapper.readValue(any(InputStream.class),
-                eq(projectService.getTypeReference())))
-                .thenReturn(projectList);
+        when(projectsRepository.findById(eq(1)))
+                .thenReturn(Optional.of(project));
 
         Project result = projectService.getProjectById(2);
 
@@ -95,9 +64,10 @@ public class ProjectServiceTest {
 
     @Test
     public void getProjectByIdThrowsDataFileNotAccessibleException() throws IOException {
-        when(resource.getInputStream()).thenThrow(new IOException());
+        when(projectsRepository.findById(eq(1)))
+                .thenReturn(Optional.empty());
 
-        assertThrows(DataFileNotAccessibleException.class,
+        assertThrows(ResourceNotFoundException.class,
                 () -> projectService.getProjectById(2));
     }
 

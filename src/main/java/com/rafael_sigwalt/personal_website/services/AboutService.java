@@ -1,36 +1,27 @@
 package com.rafael_sigwalt.personal_website.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rafael_sigwalt.personal_website.exceptions.DataFileNotAccessibleException;
+import com.rafael_sigwalt.personal_website.exceptions.ResourceNotFoundException;
 import com.rafael_sigwalt.personal_website.models.About;
+import com.rafael_sigwalt.personal_website.repositories.AboutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.NoSuchElementException;
 
 @Service
 public class AboutService {
 
-    private Resource resourceFile = new ClassPathResource("data/about.json");
-
     @Autowired
-    private ObjectMapper mapper;
+    AboutRepository aboutRepository;
 
     public AboutService(){}
 
-    public void setResourceFile(Resource resource) {
-        resourceFile = resource;
-    }
-
     public About getAbout() {
         try {
-            return mapper.readValue(resourceFile.getInputStream(), About.class);
-        } catch(IOException ex) {
-            throw new DataFileNotAccessibleException(ex);
+
+            return aboutRepository.findById(1).orElseThrow();
+        } catch(NoSuchElementException ex) {
+            throw new ResourceNotFoundException(ex);
         }
     }
 

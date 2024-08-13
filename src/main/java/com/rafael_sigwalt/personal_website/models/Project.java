@@ -1,7 +1,10 @@
 package com.rafael_sigwalt.personal_website.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
+@Document("projects")
 public class Project {
     private int id;
     private String title;
@@ -11,6 +14,21 @@ public class Project {
     private String git;
     private List<String> skills;
     private List<String> nextSteps;
+    private List<Integer> children;
+    public Project() {
+    }
+
+    public Project(int id, String title, String description, String shortDescription, String imageUrl, String git, List<String> skills, List<String> nextSteps, List<Integer> children) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.shortDescription = shortDescription;
+        this.imageUrl = imageUrl;
+        this.git = git;
+        this.skills = skills;
+        this.nextSteps = nextSteps;
+        this.children = children;
+    }
 
     public int getId() {
         return id;
@@ -74,5 +92,13 @@ public class Project {
 
     public void setNextSteps(List<String> nextSteps) {
         this.nextSteps = nextSteps;
+    }
+
+    public List<Integer> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Integer> children) {
+        this.children = children;
     }
 }

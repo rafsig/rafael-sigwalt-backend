@@ -1,27 +1,27 @@
 package com.rafael_sigwalt.personal_website.models;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("about")
 public class About {
 
-    private String firstName;
-    private String lastName;
+    @Id
+    private Integer id;
+    private String imageUrl;
     private String professionalDescription;
     private String personalDescription;
     private Links links;
 
-    public String getFirstName() {
-        return firstName;
+    public About() {
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public About(Integer id, String imageUrl, String professionalDescription, String personalDescription, Links links) {
+        this.id = id;
+        this.imageUrl = imageUrl;
+        this.professionalDescription = professionalDescription;
+        this.personalDescription = personalDescription;
+        this.links = links;
     }
 
     public String getProfessionalDescription() {
@@ -30,6 +30,22 @@ public class About {
 
     public void setProfessionalDescription(String professionalDescription) {
         this.professionalDescription = professionalDescription;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getPersonalDescription() {

@@ -2,7 +2,7 @@ package com.rafael_sigwalt.personal_website.dtos;
 
 import com.rafael_sigwalt.personal_website.models.WorkExperience;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 public class GetWorkExperienceDTO {
@@ -10,8 +10,8 @@ public class GetWorkExperienceDTO {
     private int id;
     private String role;
     private String companyName;
-    private String dateStart;
-    private String dateEnd;
+    private LocalDate dateStart;
+    private LocalDate dateEnd;
     private String description;
     private List<String> highlights;
 
@@ -19,9 +19,8 @@ public class GetWorkExperienceDTO {
         id = workExperience.getId();
         role = workExperience.getRole();
         companyName = workExperience.getCompanyName();
-        SimpleDateFormat formatter = new SimpleDateFormat("MMMM yyyy");
-        dateStart = formatter.format(workExperience.getDateStart());
-        dateEnd = formatter.format(workExperience.getDateEnd());
+        dateStart = workExperience.getDateStart();
+        dateEnd = workExperience.getDateEnd();
         description = workExperience.getDescription();
         highlights = workExperience.getHighlights();
     }
@@ -50,19 +49,19 @@ public class GetWorkExperienceDTO {
         this.companyName = companyName;
     }
 
-    public String getDateStart() {
+    public LocalDate getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(String dateStart) {
+    public void setDateStart(LocalDate dateStart) {
         this.dateStart = dateStart;
     }
 
-    public String getDateEnd() {
+    public LocalDate getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(String dateEnd) {
+    public void setDateEnd(LocalDate dateEnd) {
         this.dateEnd = dateEnd;
     }
 
