@@ -8,10 +8,9 @@
     "git":"https://github.com/rafsig/rafael-sigwalt-site",
     "skills":["React", "TypeScript", "HTML", "CSS", "Styled-Components"],
     "nextSteps":[
-      "Add Redux to manage global state",
-      "Remove education page data to back-end",
-      "Refactor Card code to be reusable between Certificates and Projects",
-      "Add modal with detailed description to Certificates"
+      "Add pagination for certificates",
+      "Add Admin pages to manage content",
+      "Retrieve images from S3 container"
     ]
   },
   {
@@ -23,7 +22,8 @@
     "git": "https://github.com/rafsig/rafael-sigwalt-backend",
     "skills":["Java Spring Boot", "REST API", "AWS ECS", "AWS ALB"],
     "nextSteps":[
-      "Add a database",
+      "Move data to a database",
+      "Add secret manager to store database secrets",
       "Add PUT, DELETE and UPDATE requests"
     ]
   },
