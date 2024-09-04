@@ -57,9 +57,9 @@ public class ProjectServiceTest {
         when(projectsRepository.findById(eq(1)))
                 .thenReturn(Optional.of(project));
 
-        Project result = projectService.getProjectById(2);
+        Project result = projectService.getProjectById(1);
 
-        assertEquals(2, result.getId());
+        assertEquals(1, result.getId());
     }
 
     @Test
