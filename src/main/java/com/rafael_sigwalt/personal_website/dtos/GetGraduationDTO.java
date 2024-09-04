@@ -9,17 +9,16 @@ public class GetGraduationDTO {
     private int id;
     private String degree;
     private String programName;
-    @JsonFormat(pattern = "MMM yyyy")
-    private LocalDate dateConcluded;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateFinished;
     private String institution;
 
-
     public GetGraduationDTO(Graduation graduation) {
-        id = graduation.getId();
-        degree = graduation.getDegree();
-        programName = graduation.getProgramName();
-        dateConcluded = graduation.getDateConcluded();
-        institution = graduation.getInstitution();
+        this.id = graduation.getId();
+        this.degree = graduation.getDegree();
+        this.programName = graduation.getProgramName();
+        this.dateFinished = graduation.getDateFinished();
+        this.institution = graduation.getInstitution();
     }
 
     public int getId() {
@@ -46,12 +45,12 @@ public class GetGraduationDTO {
         this.programName = programName;
     }
 
-    public LocalDate getDateConcluded() {
-        return dateConcluded;
+    public LocalDate getDateFinished() {
+        return dateFinished;
     }
 
-    public void setDateConcluded(LocalDate dateConcluded) {
-        this.dateConcluded = dateConcluded;
+    public void setDateFinished(LocalDate dateFinished) {
+        this.dateFinished = dateFinished;
     }
 
     public String getInstitution() {

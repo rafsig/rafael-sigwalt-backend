@@ -1,18 +1,34 @@
 package com.rafael_sigwalt.personal_website.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
+
+@Document("workExperiences")
 public class WorkExperience {
 
     private int id;
     private String role;
     private String companyName;
-    private Date dateStart;
-    private Date dateEnd;
+    private LocalDate dateStart;
+    private LocalDate dateEnd;
     private String description;
     private List<String> highlights;
+
+    public WorkExperience() {
+    }
+
+    public WorkExperience(int id, String role, String companyName, LocalDate dateStart, LocalDate dateEnd, String description, List<String> highlights) {
+        this.id = id;
+        this.role = role;
+        this.companyName = companyName;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.description = description;
+        this.highlights = highlights;
+    }
 
     public int getId() {
         return id;
@@ -38,19 +54,19 @@ public class WorkExperience {
         this.companyName = companyName;
     }
 
-    public Date getDateStart() {
+    public LocalDate getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(Date dateStart) {
+    public void setDateStart(LocalDate dateStart) {
         this.dateStart = dateStart;
     }
 
-    public Date getDateEnd() {
+    public LocalDate getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(Date dateEnd) {
+    public void setDateEnd(LocalDate dateEnd) {
         this.dateEnd = dateEnd;
     }
 

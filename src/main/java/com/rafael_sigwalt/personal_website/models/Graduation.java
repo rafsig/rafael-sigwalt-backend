@@ -1,14 +1,30 @@
 package com.rafael_sigwalt.personal_website.models;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDate;
 
+@Document("graduations")
 public class Graduation {
 
+    @Id
     private int id;
     private String degree;
     private String programName;
-    private LocalDate dateConcluded;
+    private LocalDate dateFinished;
     private String institution;
+
+    public Graduation() {
+    }
+
+    public Graduation(int id, String degree, String programName, LocalDate dateFinished, String institution) {
+        this.id = id;
+        this.degree = degree;
+        this.programName = programName;
+        this.dateFinished = dateFinished;
+        this.institution = institution;
+    }
 
     public int getId() {
         return id;
@@ -34,12 +50,12 @@ public class Graduation {
         this.programName = programName;
     }
 
-    public LocalDate getDateConcluded() {
-        return dateConcluded;
+    public LocalDate getDateFinished() {
+        return dateFinished;
     }
 
-    public void setDateConcluded(LocalDate dateConcluded) {
-        this.dateConcluded = dateConcluded;
+    public void setDateFinished(LocalDate dateFinished) {
+        this.dateFinished = dateFinished;
     }
 
     public String getInstitution() {

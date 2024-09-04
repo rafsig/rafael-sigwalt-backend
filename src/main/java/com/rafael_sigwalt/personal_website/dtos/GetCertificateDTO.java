@@ -8,39 +8,41 @@ import java.util.List;
 
 public class GetCertificateDTO {
 
-    private Integer id;
-    private String imagePath;
+    private int id;
+    private String imageUrl;
     private String title;
-    @JsonFormat(pattern="MMM yyyy")
-    private LocalDate concluded;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate dateFinished ;
     private String institution;
     private String url;
     private List<String> outcomes;
+    private List<Integer> children;
 
     public GetCertificateDTO(Certificate certificate) {
-        id = certificate.getId();
-        imagePath = certificate.getImagePath();
-        title = certificate.getTitle();
-        concluded = certificate.getConcluded();
-        institution = certificate.getInstitution();
-        url = certificate.getUrl();
-        outcomes = certificate.getOutcomes();
+        this.id = certificate.getId();
+        this.imageUrl = certificate.getImageUrl();
+        this.title = certificate.getTitle();
+        dateFinished = certificate.getDateFinished();
+        this.institution = certificate.getInstitution();
+        this.url = certificate.getUrl();
+        this.outcomes = certificate.getOutcomes();
+        this.children = certificate.getChildren();
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
@@ -52,11 +54,11 @@ public class GetCertificateDTO {
     }
 
     public LocalDate getConcluded() {
-        return concluded;
+        return dateFinished;
     }
 
-    public void setConcluded(LocalDate concluded) {
-        this.concluded = concluded;
+    public void setConcluded(LocalDate dateFinished) {
+        this.dateFinished = dateFinished;
     }
 
     public String getInstitution() {
@@ -81,5 +83,13 @@ public class GetCertificateDTO {
 
     public void setOutcomes(List<String> outcomes) {
         this.outcomes = outcomes;
+    }
+
+    public List<Integer> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Integer> children) {
+        this.children = children;
     }
 }

@@ -1,18 +1,21 @@
-package com.rafael_sigwalt.personal_website.dtos;
+package com.rafael_sigwalt.personal_website.models;
 
-import com.rafael_sigwalt.personal_website.models.Skills;
-
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
-public class GetSkillListDTO {
-
+@Document("skills")
+public class Skills {
+    @Id
     private int id;
-
     private List<String> skills;
 
-    public GetSkillListDTO(Skills skills) {
-        this.id = skills.getId();
-        this.skills = skills.getSkills();
+    public Skills(int id, List<String> skills) {
+        this.id = id;
+        this.skills = skills;
+    }
+
+    public Skills() {
     }
 
     public int getId() {

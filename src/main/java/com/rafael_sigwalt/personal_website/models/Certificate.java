@@ -1,29 +1,37 @@
 package com.rafael_sigwalt.personal_website.models;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Document("certificates")
 public class Certificate {
 
+    @Id
     private Integer id;
-    private String imagePath;
+    private Type type;
+    private String imageUrl;
     private String title;
-    private LocalDate concluded;
+    private LocalDate dateFinished;
     private String institution;
     private String url;
+    private List<Integer> children;
     private List<String> outcomes;
 
     public Certificate() {
     }
 
-    public Certificate(Integer id, String imageUrl, String title, LocalDate dateFinished, String institution, String url, List<String> outcomes) {
+    public Certificate(Integer id, Type type, String imageUrl, String title, LocalDate dateFinished, String institution, String url, List<Integer> children, List<String> outcomes) {
         this.id = id;
-        this.imagePath = imageUrl;
+        this.type = type;
+        this.imageUrl = imageUrl;
         this.title = title;
-        this.concluded = dateFinished;
+        this.dateFinished = dateFinished;
         this.institution = institution;
         this.url = url;
+        this.children = children;
         this.outcomes = outcomes;
     }
 
@@ -35,12 +43,12 @@ public class Certificate {
         this.id = id;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
@@ -51,12 +59,12 @@ public class Certificate {
         this.title = title;
     }
 
-    public LocalDate getConcluded() {
-        return concluded;
+    public LocalDate getDateFinished() {
+        return dateFinished;
     }
 
-    public void setConcluded(LocalDate concluded) {
-        this.concluded = concluded;
+    public void setDateFinished(LocalDate dateFinished) {
+        this.dateFinished = dateFinished;
     }
 
     public String getInstitution() {
@@ -77,6 +85,22 @@ public class Certificate {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public List<Integer> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Integer> children) {
+        this.children = children;
     }
 
     public List<String> getOutcomes() {

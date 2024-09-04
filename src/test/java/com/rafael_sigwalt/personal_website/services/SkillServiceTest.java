@@ -1,8 +1,8 @@
 package com.rafael_sigwalt.personal_website.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rafael_sigwalt.personal_website.exceptions.DataFileNotAccessibleException;
-import com.rafael_sigwalt.personal_website.models.Skill;
+import com.rafael_sigwalt.personal_website.exceptions.ResourceNotFoundException;
+import com.rafael_sigwalt.personal_website.models.Skills;
+import com.rafael_sigwalt.personal_website.repositories.SkillsRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,13 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import org.mockito.MockitoAnnotations;
-import org.springframework.core.io.Resource;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,25 +23,14 @@ public class SkillServiceTest {
     private SkillService skillService;
 
     @Mock
-    private ObjectMapper objectMapper;
-
-    @Mock
-    Resource resource;
+    private SkillsRepository skillsRepository;
 
     AutoCloseable autoCloseable;
 
-    InputStream inputStream;
 
     @BeforeEach
     public void setup() {
         autoCloseable = MockitoAnnotations.openMocks(this);
-        skillService.setResourceFile(resource);
-        inputStream = new InputStream() {
-            @Override
-            public int read() throws IOException {
-                return 0;
-            }
-        };
     }
 
     @AfterEach
@@ -55,21 +40,21 @@ public class SkillServiceTest {
 
     @Test
     public void getSkillListReturnsSkills() throws IOException {
-        List<Skill> skillList = Arrays.asList(new Skill(), new Skill());
+        Skills skills = new Skills();
+        skills.setId(1);
 
-        when(resource.getInputStream()).thenReturn(inputStream);
-        when(objectMapper.readValue(any(InputStream.class),
-                eq(skillService.getTypeReference())))
-                .thenReturn(skillList);
+        when(skillsRepository.findById(eq(1)))
+                .thenReturn(Optional.of(skills));
 
-        assertEquals(2, skillList.size());
+        assertEquals(1, skills.getId());
     }
 
     @Test
     public void getSkillListThrowsDataFileNotAccessibleException() throws IOException {
-        when(resource.getInputStream()).thenThrow(new IOException());
+        when(skillsRepository.findById(eq(1)))
+                .thenReturn(Optional.empty());
 
-        assertThrows(DataFileNotAccessibleException.class,
+        assertThrows(ResourceNotFoundException.class,
                 () -> skillService.getSkillList());
     }
 

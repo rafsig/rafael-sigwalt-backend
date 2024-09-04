@@ -20,13 +20,14 @@ public class GraduationController {
     private GraduationService graduationService;
 
     @GetMapping
-    public ResponseEntity<Iterable<GetGraduationDTO>> getProjectList() {
-        List<Graduation> projectList = graduationService.getGraduationList();
+    public ResponseEntity<List<GetGraduationDTO>> listGraduations(){
+        List<Graduation> graduationList = graduationService.getGraduationList();
 
         return ResponseEntity
-                .ok(projectList
+                .ok( graduationList
                         .stream()
                         .map(GetGraduationDTO::new)
                         .collect(Collectors.toList()));
     }
+
 }

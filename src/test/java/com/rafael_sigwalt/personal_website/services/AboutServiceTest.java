@@ -1,21 +1,18 @@
 package com.rafael_sigwalt.personal_website.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rafael_sigwalt.personal_website.exceptions.DataFileNotAccessibleException;
+
+import com.rafael_sigwalt.personal_website.exceptions.ResourceNotFoundException;
 import com.rafael_sigwalt.personal_website.models.About;
 import com.rafael_sigwalt.personal_website.models.Links;
+import com.rafael_sigwalt.personal_website.repositories.AboutRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.core.io.Resource;
-
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-
+import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,25 +23,14 @@ public class AboutServiceTest {
     private AboutService aboutService;
 
     @Mock
-    private ObjectMapper objectMapper;
+    private AboutRepository aboutRepository;
 
-    @Mock
-    Resource resource;
+    private AutoCloseable autoCloseable;
 
-    AutoCloseable autoCloseable;
-
-    InputStream inputStream;
 
     @BeforeEach
     public void setup() {
         autoCloseable = MockitoAnnotations.openMocks(this);
-        aboutService.setResourceFile(resource);
-        inputStream = new InputStream() {
-            @Override
-            public int read() throws IOException {
-                return 0;
-            }
-        };
     }
 
     @AfterEach
@@ -62,8 +48,6 @@ public class AboutServiceTest {
         String expectedLinkedIn = "linkedIn";
 
         About about = new About();
-        about.setFirstName(expectedName);
-        about.setLastName(expectedLastName);
         about.setPersonalDescription(expectedPersonalDescription);
         about.setProfessionalDescription(expectedProfessionalDescription);
         Links links = new Links();
@@ -71,15 +55,10 @@ public class AboutServiceTest {
         links.setLinkedIn(expectedLinkedIn);
         about.setLinks(links);
 
-        when(resource.getInputStream()).thenReturn(inputStream);
-        when(objectMapper.readValue(any(InputStream.class),
-                eq(About.class)))
-                .thenReturn(about);
+        when(aboutRepository.findById(eq(1))).thenReturn(Optional.of(about));
 
         About result = aboutService.getAbout();
 
-        assertEquals(expectedName, result.getFirstName());
-        assertEquals(expectedLastName, result.getLastName());
         assertEquals(expectedProfessionalDescription, result.getProfessionalDescription());
         assertEquals(expectedPersonalDescription, result.getPersonalDescription());
         assertEquals(expectedLinkedIn, result.getLinks().getLinkedIn());
@@ -88,9 +67,9 @@ public class AboutServiceTest {
 
     @Test
     public void getAboutThrowsDataFileNotAccessibleException() throws IOException {
-        when(resource.getInputStream()).thenThrow(new IOException());
+        when(aboutRepository.findById(1)).thenReturn(Optional.empty());
 
-       assertThrows(DataFileNotAccessibleException.class,
+       assertThrows(ResourceNotFoundException.class,
                () -> aboutService.getAbout());
     }
 

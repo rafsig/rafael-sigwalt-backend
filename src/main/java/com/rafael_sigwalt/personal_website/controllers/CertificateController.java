@@ -21,21 +21,16 @@ public class CertificateController {
     @Autowired
     private CertificateService certificateService;
 
-
     @GetMapping
-    public ResponseEntity<Iterable<GetCertificateListDTO>> getProjectList() {
+    public ResponseEntity<List<GetCertificateListDTO>> getCertificateList() {
         List<Certificate> certificateList = certificateService.getCertificateList();
 
-        return ResponseEntity
-                .ok(certificateList
-                        .stream()
-                        .map(GetCertificateListDTO::new)
-                        .collect(Collectors.toList()));
+        return ResponseEntity.ok(certificateList.stream().map(GetCertificateListDTO::new).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GetCertificateDTO> getProject(@PathVariable int id) {
-        return ResponseEntity
-                .ok(new GetCertificateDTO(certificateService.getCertificateById(id)));
+    public  ResponseEntity<GetCertificateDTO> getCertificateById(@PathVariable int id) {
+        Certificate certificate = certificateService.getCertificateById(id);
+        return ResponseEntity.ok(new GetCertificateDTO(certificate));
     }
 }

@@ -7,35 +7,35 @@ import java.time.LocalDate;
 
 public class GetCertificateListDTO {
 
-    private Integer id;
-    private String imagePath;
+    private int id;
+    private String imageUrl;
     private String title;
-    @JsonFormat(pattern="MMM yyyy")
-    private LocalDate concluded;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateFinished;
     private String institution;
 
     public GetCertificateListDTO(Certificate certificate) {
-        id = certificate.getId();
-        imagePath = certificate.getImagePath();
+        id= certificate.getId();
+        imageUrl = certificate.getImageUrl();
         title = certificate.getTitle();
-        concluded = certificate.getConcluded();
+        dateFinished = certificate.getDateFinished();
         institution = certificate.getInstitution();
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
@@ -46,12 +46,12 @@ public class GetCertificateListDTO {
         this.title = title;
     }
 
-    public LocalDate getConcluded() {
-        return concluded;
+    public LocalDate getDateFinished() {
+        return dateFinished;
     }
 
-    public void setConcluded(LocalDate concluded) {
-        this.concluded = concluded;
+    public void setDateFinished(LocalDate dateFinished) {
+        this.dateFinished = dateFinished;
     }
 
     public String getInstitution() {
