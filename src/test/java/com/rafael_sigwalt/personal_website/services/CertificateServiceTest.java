@@ -9,6 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -39,14 +44,17 @@ public class CertificateServiceTest {
 
     @Test
     public void getCertificateListReturnsCertificateListInformation() throws IOException {
+        Pageable pageable = PageRequest.of(0,2);
+
         List<Certificate> certificateList = Arrays.asList(new Certificate(), new Certificate());
+        Page<Certificate> certificatePage = new PageImpl<Certificate>(certificateList, pageable, certificateList.size()) ;
 
-        when(certificatesRepository.findAll())
-                .thenReturn(certificateList);
+        when(certificatesRepository.findAll(any(Pageable.class)))
+                .thenReturn(certificatePage);
 
-        List<Certificate> result = certificateService.getCertificateList();
+        Page<Certificate> result = certificateService.getCertificateList(2, 2);
 
-        assertEquals(2, result.size());
+        assertEquals(2, result.getTotalElements());
     }
 
     @Test

@@ -5,11 +5,9 @@ import com.rafael_sigwalt.personal_website.dtos.GetCertificateListDTO;
 import com.rafael_sigwalt.personal_website.models.Certificate;
 import com.rafael_sigwalt.personal_website.services.CertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,10 +20,10 @@ public class CertificateController {
     private CertificateService certificateService;
 
     @GetMapping
-    public ResponseEntity<List<GetCertificateListDTO>> getCertificateList() {
-        List<Certificate> certificateList = certificateService.getCertificateList();
+    public ResponseEntity<Page<GetCertificateListDTO>> getCertificateList(@RequestParam int numPerPage, @RequestParam int page) {
+        Page<Certificate> certificateList = certificateService.getCertificateList(numPerPage, page);
 
-        return ResponseEntity.ok(certificateList.stream().map(GetCertificateListDTO::new).collect(Collectors.toList()));
+        return ResponseEntity.ok(certificateList.map(GetCertificateListDTO::new));
     }
 
     @GetMapping("/{id}")
